@@ -38,16 +38,22 @@ export const fetchCryptoNews = async (query: string): Promise<any> => {
   try {
     const response = await axios.get(`${NEWS_API_URL}`, {
       params: {
-        q: query, // Anahtar kelime olarak spesifik bir kripto para adı
-        apiKey: NEWS_API_KEY,
-        language: 'en', // İngilizce haberler
-        sortBy: 'publishedAt', // Yayınlanma tarihine göre sıralama
-        pageSize: 10, // Sayfa başına haber sayısı
+        q: query,
+        apiKey: `${NEWS_API_KEY}`,
+        language: 'en',
+        sortBy: 'publishedAt',
+        pageSize: 10,
       },
     });
-    return response.data.articles; // Haberlerin listesi
+    return response.data.articles;
   } catch (error) {
-    console.error('Error fetching crypto news:', error);
-    throw error; // Burada hata daha detaylı işlenebilir
+    if (axios.isAxiosError(error)) {
+      console.error('Error fetching crypto news:', error.message);
+      console.error('Response Data:', error.response?.data);
+      console.error('Response Status:', error.response?.status);
+    } else {
+      console.error('Unexpected error:', error);
+    }
+    throw error;
   }
 };
