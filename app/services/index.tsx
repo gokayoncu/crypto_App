@@ -42,9 +42,10 @@ export const fetchCryptoNews = async (query: string): Promise<any> => {
         apiKey: `${NEWS_API_KEY}`,
         language: 'en',
         sortBy: 'publishedAt',
-        pageSize: 10,
+        pageSize: 50,
       },
     });
+    
     return response.data.articles;
   } catch (error) {
     if (axios.isAxiosError(error)) {
