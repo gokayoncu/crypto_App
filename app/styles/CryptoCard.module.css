@@ -1,0 +1,223 @@
+/* styles/CryptoCard.module.css */
+
+/* Genel kart stili */
+.cryptoCard {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 8px 15px; /* Üst ve alt margin bırak */
+  min-width: 90vw; /* Sayfanın genişliğini tam olarak kullan */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+  background-color: #fff; /* Arka plan rengi */
+}
+
+.cryptoCardImage {
+  max-width: 50px;
+  height: auto;
+  margin-right: 16px; 
+}
+
+.cryptoCardDetails {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* İçerik arasında boşluk bırakır */
+  gap: 15px;
+  flex: 1;
+}
+
+.cryptoCardName {
+  font-size: 1.2rem;
+  margin: 0;
+  width: 6rem;
+  text-align: left; 
+}
+
+.cryptoCardPrice {
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+  width: 10rem;
+}
+
+.cryptoCardChange {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0;
+}
+
+.cryptoCardButtons {
+  display: flex;
+  gap: 8px; 
+  margin-top: 12px; /* Butonlar arasında üstten boşluk bırakır */
+}
+
+.cryptoCardButton {
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease; /* Renk geçişini yumuşatır */
+}
+
+.cryptoCardButton:hover {
+  background-color: #005bb5;
+  color: #ddd; /* Hover rengi */
+}
+
+/* Ana container stili */
+.container {
+  width: 100%;
+  max-width: 100vw; /* Sayfanın genişliğini tam olarak kullan */
+  overflow-x: hidden; /* Yatay kaydırmayı engelle */
+  display: flex;
+  flex-direction: column; /* İçeriği dikey olarak hizala */
+  align-items: center; /* İçeriğe padding ekler */
+  margin: 0 auto; /* Merkezi hizalama */
+}
+
+/* Crypto kartları listesi */
+.cryptoList {
+  display: flex;
+  flex-wrap: wrap; /* Kartları satırlara sar */
+  justify-content: center; /* Kartları ortala */
+  gap: 16px; /* Kartlar arasındaki boşluk */
+  width: 100%;
+  margin-top: 3rem; /* Üstten boşluk bırak */
+}
+
+/* Watchlist stili */
+.watchlist {
+  width: 100%; /* Watchlist için genişliği %100 yapabilirsin */
+  padding: 16px;
+}
+
+.watchlistTitle {
+  margin-bottom: 16px;
+}
+
+.watchlist-item {
+  border-bottom: 1px solid #ddd;
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+}
+
+.watchlist-itemImage {
+  max-width: 50px;
+  height: auto;
+  margin-right: 16px;
+}
+
+.watchlist-itemName {
+  font-size: 1rem;
+}
+
+/* Coin detayları */
+.coinDetail {
+  padding: 16px;
+  text-align: center;
+}
+
+.coinImage {
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.coinTitle {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.coinText {
+  font-size: 1.2rem;
+  margin: 8px 0;
+}
+
+/* Responsive düzenleme */
+@media (max-width: 800px) {
+  .cryptoCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    font-size: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px; /* İçerik için padding */
+    margin: 8px; /* Margin'i eşit yaparak boşluk bırak */
+    width: 220px; /* Kart genişliği */
+    height: 350px; /* Kart yüksekliği */
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+    background-color: #fff; /* Arka plan rengi */
+    transition: transform 0.2s ease-in-out; /* Hover efekti için geçiş */
+  }
+
+  .cryptoCard:hover {
+    transform: scale(1.05); /* Hover efekti */
+  }
+
+  .cryptoCardImage {
+    max-width: 60px; /* Resim genişliği */
+    height: 60px; /* Resim yüksekliği */
+    margin-bottom: 16px; /* Resim ile detaylar arasına boşluk bırak */
+  }
+
+  .cryptoCardDetails {
+    display: flex;
+    flex-direction: column; /* İçerik detaylarını dikeyde hizala */
+    align-items: center;
+    gap: 8px; /* İçerik detayları arasında boşluk bırak */
+  }
+
+  .cryptoCardName,
+  .cryptoCardPrice,
+  .cryptoCardChange {
+    margin: 0;
+    text-align: center; /* Metni ortala */
+  }
+
+  .cryptoCardButtons {
+    display: flex;
+    gap: 8px;
+    margin-top: auto; /* Butonları kartın altına hizala */
+  }
+
+  .cryptoCardButton {
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.9rem; /* Buton metnini küçült */
+    transition: background-color 0.3s ease; /* Renk geçişini yumuşatır */
+  }
+
+  .cryptoCardButton:hover {
+    background-color: #005bb5;
+    color: #ddd; /* Hover rengi */
+  }
+
+  /* Kartların responsive ayarları */
+  .cryptoList {
+    display: flex;
+    flex-wrap: wrap; /* Kartları satırlara sar */
+    justify-content: center; /* Kartları ortala */
+    gap: 16px; /* Kartlar arasındaki boşluk */
+  }
+}
+
+@media (max-width: 768px) {
+  .cryptoCard {
+    width: 180px; /* Daha küçük ekranlarda kart genişliği */
+    height: 180px; /* Daha küçük ekranlarda kart yüksekliği */
+  }
+
+  .cryptoCardImage {
+    max-width: 50px; /* Daha küçük ekranlarda resim genişliği */
+    height: 50px; /* Daha küçük ekranlarda resim yüksekliği */
+  }
+}

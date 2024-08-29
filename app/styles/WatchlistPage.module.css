@@ -1,0 +1,97 @@
+/* WatchlistPage.module.css */
+
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .watchlist {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  .watchlistItem {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  .cryptoCardImage {
+    margin-bottom: 10px;
+  }
+  
+  .watchlistItemContent {
+    margin-bottom: 10px;
+  }
+  
+  .watchlistItemTitle {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  
+  .watchlistItemPrice {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .watchlistItemChange {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .chartContainer {
+    margin-top: 10px;
+    height: 150px;  /* Grafik yüksekliği */
+    width: 250px;   /* Grafik genişliği */
+  }
+  
+  .removeButton {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+  
+  .removeButton:hover {
+    background-color: #c0392b;
+  }
+  
+  @media (min-width: 600px) {
+    .watchlistItem {
+      width: 45%;
+    }
+  }
+  
+  @media (min-width: 900px) {
+    .watchlistItem {
+      width: 30%;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .watchlistItem {
+      width: 22%;
+    }
+  }
+  

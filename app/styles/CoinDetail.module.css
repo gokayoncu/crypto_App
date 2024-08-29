@@ -1,0 +1,122 @@
+.coinDetail {
+  padding: 16px;
+  text-align: center;
+}
+
+.coinImage {
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.coinTitle {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.coinText {
+  font-size: 1.2rem;
+  margin: 8px 0;
+}
+.smallText {
+  font-size: 0.75rem; /* Daha küçük bir yazı boyutu (örneğin 12px) */
+}
+/* Main container for coin detail page */
+.coinDetail {
+  padding: 16px;
+  text-align: left; /* Text alignment set to left */
+}
+
+/* Title styling */
+.coinTitle {
+  font-size: 2rem;
+  margin: 0 0 16px;
+  text-align: left; /* Title alignment set to left */
+}
+
+/* Image styling */
+.coinImage {
+  border-radius: 8px;
+  display: block; /* Ensures the image is a block-level element */
+  margin-bottom: 16px; /* Margin below the image */
+}
+
+/* Text styling for coin details */
+.coinText {
+  font-size: 1.1rem;
+  margin: 8px 0;
+  text-align: left; /* Text alignment set to left */
+}
+
+/* Small text styling for coin description */
+.smallText {
+  font-size: 0.9rem;
+  color: #555;
+  text-align: left; /* Text alignment set to left */
+}
+
+/* News section styling */
+.newsSection {
+  margin-top: 32px;
+}
+
+/* News title styling */
+.newsTitle {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  text-align: left; /* Title alignment set to left */
+}
+
+/* News list styling */
+.newsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* News item styling */
+.newsItem {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-wrap: break-word;
+  text-align: left; /* Text alignment set to left */
+}
+
+/* Link styling inside news items */
+.newsItem a {
+  text-decoration: none;
+  color: #333;
+  display: block; /* Ensures the link is a block-level element */
+}
+
+/* Title styling inside news items */
+.newsItem h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  text-align: left; /* Title alignment set to left */
+}
+
+/* Description styling inside news items */
+.newsItem p {
+  margin: 8px 0 0;
+  color: #555;
+  text-align: left; /* Description alignment set to left */
+}
+
+/* Date styling inside news items */
+.newsItem small {
+  color: #999;
+  font-size: 0.8rem;
+  text-align: left; /* Date alignment set to left */
+}
+
+/* Loading and error message styling */
+.loading, .error, .noData {
+  color: #333;
+  text-align: left; /* Alignment for loading and error messages set to left */
+}

@@ -1,0 +1,71 @@
+/* styles/Watchlist.module.css */
+
+.watchlist {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px; 
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.watchlistTitle {
+  width: 100%;
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center; /* Başlığı ortalamak için */
+}
+
+.watchlistItem { /* 4 sütunlu düzen için genişlik ayarı */
+  padding: 16px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.watchlistItemImage {
+  border-radius: 50%;
+  margin-bottom: 8px;
+}
+
+.watchlistItem h3 {
+  font-size: 1.2rem;
+  margin: 8px 0;
+}
+
+.watchlistItem p {
+  margin: 4px 0;
+  font-size: 1rem;
+}
+
+.removeButton {
+  background: none;
+  border: none;
+  color: #f00;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.removeButton:hover {
+  color: #d00;
+}
+
+/* Medya sorguları ile responsive tasarım desteği ekleme */
+@media (max-width: 768px) {
+  .watchlistItem {
+    width: calc(50% - 16px); /* Küçük ekranlarda iki sütunlu düzen */
+  }
+}
+
+@media (max-width: 480px) {
+  .watchlistItem {
+    width: 100%; /* Çok küçük ekranlarda tek sütunlu düzen */
+  }
+}

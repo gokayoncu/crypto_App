@@ -1,0 +1,63 @@
+/* Container for the news list */
+.newsList {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Adjusted gap between news items */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  overflow-x: hidden; /* Hide horizontal overflow */
+}
+
+/* Style for each news item */
+.newsItem {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 15px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-wrap: break-word; /* Break long words to prevent overflow */
+}
+
+/* Link styling inside news items */
+.newsItem a {
+  text-decoration: none;
+  color: #333;
+  display: block; /* Ensure the link takes the full width of the item */
+}
+
+/* Title styling */
+.newsItem h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  word-break: break-word; /* Break long words */
+}
+
+/* Description styling */
+.newsItem p {
+  margin: 8px 0 0;
+  color: #555;
+  word-break: break-word; /* Break long words */
+}
+
+/* Date styling */
+.newsItem small {
+  color: #999;
+  font-size: 0.8rem;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+  .newsItem {
+    padding: 8px; /* Adjust padding for smaller screens */
+  }
+
+  .newsItem h3 {
+    font-size: 1rem; /* Adjust font size for smaller screens */
+  }
+
+  .newsItem p {
+    font-size: 0.9rem; /* Adjust font size for smaller screens */
+  }
+}
