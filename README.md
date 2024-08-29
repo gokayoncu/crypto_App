@@ -1,5 +1,7 @@
 # Cryptocurrency Tracking Application
 
+#live site : https://crypto-k9n0q8uwr-gokayoncus-projects.vercel.app/
+
 ## Overview
 
 This project is a web-based application designed to track and manage cryptocurrencies. It provides users with a detailed view of various cryptocurrencies, including their current prices, historical data, and related news. The application leverages the CoinGecko API to fetch cryptocurrency data and includes features to enhance the user experience.
