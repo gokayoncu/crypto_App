@@ -1,6 +1,6 @@
 # Cryptocurrency Tracking Application
 
-Live site : https://crypto-k9n0q8uwr-gokayoncus-projects.vercel.app/
+Live site: https://crypto-k9n0q8uwr-gokayoncus-projects.vercel.app/
 
 ## Overview
 
@@ -20,6 +20,12 @@ This project is a web-based application designed to track and manage cryptocurre
   - Market capitalization
   - Lowest/Highest prices in the last 24 hours
 - **News Integration (Bonus)**: Displays cryptocurrency news on the dashboard and specific news for each cryptocurrency on its detail page.
+![news2](https://github.com/user-attachments/assets/9aeb5aa4-ad74-4f22-a6ff-f1eeb299c5c0)
+![news](https://github.com/user-attachments/assets/98dce734-7391-4e65-9556-96bc09bae73c)
+
+## Note
+
+*Please note that the News API integration is currently only functional on the local server. As a result, images and related content may not be displayed properly on the live site. We apologize for any inconvenience this may cause and recommend checking the application on the local server for the full experience.*
 
 ## Technologies Used
 
