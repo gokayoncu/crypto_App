@@ -30,6 +30,7 @@ const PriceChart: React.FC<PriceChartProps> = ({ labels, data }) => {
       legend: {
         position: 'top' as const,
       },
+      // Grafikte üzerinde durulduğunda  görünecek pencere
       tooltip: {
         callbacks: {
           label: function (context: any) {

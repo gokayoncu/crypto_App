@@ -41,7 +41,7 @@ export const fetchCryptoNews = async (query: string): Promise<any> => {
         q: query,
         apiKey: `${NEWS_API_KEY}`,
         language: 'en',
-        sortBy: 'publishedAt',
+        sortBy: 'publishedAt',   //Haberin sıralama ayarı (eski ve yeni olarak)
         pageSize: 50,
       },
     });

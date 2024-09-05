@@ -13,11 +13,11 @@ const CoinDetailPage: React.FC<{ params: { id: string } }> = ({ params }) => {
   const [news, setNews] = useState<any[]>([]);
   const [newsLoading, setNewsLoading] = useState<boolean>(true);
   const [newsError, setNewsError] = useState<string | null>(null);
-
   const { data: coin, error, isLoading } = useQuery<CoinDetails>(['coinDetail', id], () => fetchCoinDetail(id), {
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: false, // Bu Alana yeniden odakladığında verinin tekrar çekilmesini engeller. 
   });
-
+  
+  console.log(coin)
   // Fetch news for the coin
   useEffect(() => {
     const fetchNews = async () => {
