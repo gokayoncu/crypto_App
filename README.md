@@ -1,6 +1,7 @@
 # Cryptocurrency Tracking Application
 
 Live site: https://crypto-k9n0q8uwr-gokayoncus-projects.vercel.app/
+           https://curious-platypus-cdf6ab.netlify.app/
 
 ## Overview
 
