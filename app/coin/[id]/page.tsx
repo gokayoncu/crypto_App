@@ -50,13 +50,14 @@ const CoinDetailPage: React.FC<{ params: { id: string } }> = ({ params }) => {
   const currentPrice = coin.market_data.current_price.usd;
   const priceChange24h = coin.market_data.price_change_percentage_24h;
 
-  const chartLabels = ['1d', '7d', '30d', '1y'];
+  const chartLabels = ['1y', '30d', '7d', '1d'];
   const chartData = [
-    currentPrice,
-    currentPrice * 1.05,
-    currentPrice * 1.10,
-    currentPrice * 1.25
+    currentPrice / (1 + coin.market_data.price_change_percentage_1y / 100), 
+    currentPrice / (1 + coin.market_data.price_change_percentage_30d / 100), 
+    currentPrice / (1 + coin.market_data.price_change_percentage_7d / 100), 
+    currentPrice 
   ];
+  
 
   return (
     <div className={styles.coinDetail}>
