@@ -1,5 +1,7 @@
 // app/services/index.ts
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
+import rateLimit from 'axios-rate-limit';
 import { Coin } from '../types/type';
 import { CoinDetails } from '../types/type';
 
@@ -7,10 +9,28 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const NEWS_API_URL = process.env.NEXT_PUBLIC_NEWS_API_URL;
 const NEWS_API_KEY = process.env.NEXT_PUBLIC_NEWS_API_KEY;
 
+// Configure axios instance with retry and rate limit
+const axiosInstance = axios.create({
+  baseURL: BASE_URL,
+  timeout: 10000,
+});
+
+axiosRetry(axiosInstance, {
+  retries: 3,
+  retryDelay: retryCount => retryCount * 1000,
+  retryCondition: error => axios.isAxiosError(error) && error.response?.status === 429,
+});
+
+const http = rateLimit(axiosInstance, {
+  maxRequests: 30,
+  perMilliseconds: 60 * 1000,
+  maxRPS: 0.5,
+});
+
 // Fetch all coins
 export const fetchAllCoins = async (): Promise<Coin[]> => {
   try {
-    const response = await axios.get(`${BASE_URL}/coins/markets`, {
+    const response = await http.get('/coins/markets', {
       params: {
         vs_currency: 'usd',
       },
@@ -25,7 +45,7 @@ export const fetchAllCoins = async (): Promise<Coin[]> => {
 // Fetch coin details
 export const fetchCoinDetail = async (id: string): Promise<CoinDetails> => {
   try {
-    const response = await axios.get(`${BASE_URL}/coins/${id}`);
+    const response = await http.get(`/coins/${id}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching coin detail:', error);
@@ -39,7 +59,7 @@ export const fetchCryptoNews = async (query: string): Promise<any> => {
     const response = await axios.get(`${NEWS_API_URL}`, {
       params: {
         q: query,
-        apiKey: `${NEWS_API_KEY}`,
+        apiKey: NEWS_API_KEY,
         language: 'en',
         sortBy: 'publishedAt',   //Haberin sıralama ayarı (eski ve yeni olarak)
         pageSize: 50,
