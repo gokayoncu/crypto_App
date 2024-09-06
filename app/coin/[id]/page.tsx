@@ -12,10 +12,11 @@ const CoinDetailPage: React.FC<{ params: { id: string } }> = ({ params }) => {
   const [newsLoading, setNewsLoading] = useState<boolean>(true);
   const [newsError, setNewsError] = useState<string | null>(null);
   const { data: coin, error, isLoading } = useQuery<CoinDetails>(['coinDetail', id], () => fetchCoinDetail(id), {
-    refetchOnWindowFocus: false, // Bu Alana yeniden odakladığında verinin tekrar çekilmesini engeller. 
+    refetchOnWindowFocus: false, // Bu alana yeniden odaklandığında verinin tekrar çekilmesini engeller.
   });
   
-  console.log(coin)
+  console.log(coin);
+  
   // Fetch news for the coin
   useEffect(() => {
     const fetchNews = async () => {
@@ -55,7 +56,6 @@ const CoinDetailPage: React.FC<{ params: { id: string } }> = ({ params }) => {
     currentPrice / (1 + coin.market_data.price_change_percentage_7d / 100), 
     currentPrice 
   ];
-  
 
   return (
     <div className={styles.coinDetail}>
@@ -72,13 +72,13 @@ const CoinDetailPage: React.FC<{ params: { id: string } }> = ({ params }) => {
       <p className={styles.coinText}>Fiyat: ${currentPrice.toFixed(2)}</p>
       <p className={styles.coinText}>Değişim (24h): {priceChange24h.toFixed(2)}%</p>
       
-      <p className={${styles.coinText} ${styles.smallText}}>
+      <p className={`${styles.coinText} ${styles.smallText}`}>
         {coin.description.en ? coin.description.en : 'Açıklama mevcut değil.'}
       </p>
       <PriceChart labels={chartLabels} data={chartData} />
 
       <div className={styles.newsSection}>
-        <h2 className={styles.newsTitle}>{coin.name}Latest News</h2>
+        <h2 className={styles.newsTitle}>{coin.name} Latest News</h2>
         {newsLoading && <p className={styles.loading}>Loading news...</p>}
         {newsError && <p className={styles.error}>{newsError}</p>}
         {!newsLoading && !newsError && news.length === 0 && <p className={styles.noData}>No news available.</p>}
