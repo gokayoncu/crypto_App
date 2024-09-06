@@ -92,6 +92,7 @@
 .watchlist {
   width: 100%; /* Watchlist için genişliği %100 yapabilirsin */
   padding: 16px;
+  margin-top:40px;
 }
 
 .watchlistTitle {
