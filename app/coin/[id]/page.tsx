@@ -1,51 +1,20 @@
-'use client';
-
-import React, { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
+// pages/coin/[id].tsx
+import React from 'react';
+import { GetServerSideProps } from 'next';
 import { fetchCoinDetail, fetchCryptoNews } from '@/app/services/index';
 import { CoinDetails } from '@/app/types/type';
 import PriceChart from '@/app/components/PriceChart';
 import Image from 'next/image';
 import styles from '@/app/styles/CoinDetail.module.css';
 
-const CoinDetailPage: React.FC<{ params: { id: string } }> = ({ params }) => {
-  const { id } = params;
-  const [news, setNews] = useState<any[]>([]);
-  const [newsLoading, setNewsLoading] = useState<boolean>(true);
-  const [newsError, setNewsError] = useState<string | null>(null);
-  const { data: coin, error, isLoading } = useQuery<CoinDetails>(['coinDetail', id], () => fetchCoinDetail(id), {
-    refetchOnWindowFocus: false, // Bu Alana yeniden odakladığında verinin tekrar çekilmesini engeller. 
-  });
-  
-  console.log(coin)
-  // Fetch news for the coin
-  useEffect(() => {
-    const fetchNews = async () => {
-      if (coin) {
-        try {
-          const data = await fetchCryptoNews(coin.name);
-          setNews(data);
-        } catch (error) {
-          setNewsError('Failed to fetch news');
-        } finally {
-          setNewsLoading(false);
-        }
-      }
-    };
+interface CoinDetailPageProps {
+  coin: CoinDetails;
+  news: any[];
+  error?: string;
+}
 
-    fetchNews();
-  }, [coin]);
-
-  // Loading
-  if (isLoading) return <p className={styles.loading}>Loading...</p>;
-
-  // Error
-  if (error) return <p className={styles.error}>Error occurred! Please try again later.</p>;
-
-  // Data not found
-  if (!coin) {
-    return <p className={styles.noData}>No data found for this coin.</p>;
-  }
+const CoinDetailPage: React.FC<CoinDetailPageProps> = ({ coin, news, error }) => {
+  if (error) return <p className={styles.error}>{error}</p>;
 
   const currentPrice = coin.market_data.current_price.usd;
   const priceChange24h = coin.market_data.price_change_percentage_24h;
@@ -57,7 +26,6 @@ const CoinDetailPage: React.FC<{ params: { id: string } }> = ({ params }) => {
     currentPrice / (1 + coin.market_data.price_change_percentage_7d / 100), 
     currentPrice 
   ];
-  
 
   return (
     <div className={styles.coinDetail}>
@@ -65,7 +33,7 @@ const CoinDetailPage: React.FC<{ params: { id: string } }> = ({ params }) => {
         {coin.name} ({coin.symbol.toUpperCase()})
       </h1>
       <Image
-        src={coin.image.large || '/default-image.png'} // Varsayılan bir resim kullan
+        src={coin.image.large || '/default-image.png'}
         alt={coin.name}
         className={styles.coinImage}
         width={100}
@@ -73,18 +41,15 @@ const CoinDetailPage: React.FC<{ params: { id: string } }> = ({ params }) => {
       />
       <p className={styles.coinText}>Fiyat: ${currentPrice.toFixed(2)}</p>
       <p className={styles.coinText}>Değişim (24h): {priceChange24h.toFixed(2)}%</p>
-      
       <p className={`${styles.coinText} ${styles.smallText}`}>
         {coin.description.en ? coin.description.en : 'Açıklama mevcut değil.'}
       </p>
       <PriceChart labels={chartLabels} data={chartData} />
-
       <div className={styles.newsSection}>
-        <h2 className={styles.newsTitle}>{coin.name}Latest News</h2>
-        {newsLoading && <p className={styles.loading}>Loading news...</p>}
-        {newsError && <p className={styles.error}>{newsError}</p>}
-        {!newsLoading && !newsError && news.length === 0 && <p className={styles.noData}>No news available.</p>}
-        {!newsLoading && !newsError && news.length > 0 && (
+        <h2 className={styles.newsTitle}>{coin.name} Latest News</h2>
+        {news.length === 0 ? (
+          <p className={styles.noData}>No news available.</p>
+        ) : (
           <ul className={styles.newsList}>
             {news.map((article, index) => (
               <li key={index} className={styles.newsItem}>
@@ -100,6 +65,34 @@ const CoinDetailPage: React.FC<{ params: { id: string } }> = ({ params }) => {
       </div>
     </div>
   );
+};
+
+// Sunucu tarafında verileri çekiyoruz
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { id } = context.params as { id: string };
+
+  try {
+    // Coin detaylarını çekiyoruz
+    const coin = await fetchCoinDetail(id);
+
+    // Coin haberlerini çekiyoruz
+    const news = await fetchCryptoNews(coin.name);
+
+    return {
+      props: {
+        coin,
+        news,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        coin: null,
+        news: [],
+        error: 'Failed to fetch data',
+      },
+    };
+  }
 };
 
 export default CoinDetailPage;
