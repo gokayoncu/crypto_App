@@ -1,4 +1,4 @@
-// app/services/index.ts
+// services/index.ts
 import axios from 'axios';
 import { Coin } from '../types/type';
 import { CoinDetails } from '../types/type';
@@ -39,9 +39,9 @@ export const fetchCryptoNews = async (query: string): Promise<any> => {
     const response = await axios.get(`${NEWS_API_URL}`, {
       params: {
         q: query,
-        apiKey: `${NEWS_API_KEY}`,
+        apiKey: NEWS_API_KEY,
         language: 'en',
-        sortBy: 'publishedAt',   //Haberin sıralama ayarı (eski ve yeni olarak)
+        sortBy: 'publishedAt',
         pageSize: 50,
       },
     });
