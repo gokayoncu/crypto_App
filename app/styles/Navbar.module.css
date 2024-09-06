@@ -3,13 +3,14 @@
     display: flex;
     position: fixed; 
     top: 0; 
-    width: 100vw;
+    width: 100%; /* 100vw yerine 100% kullanıldı */
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0px 10px 20px;
+    padding: 10px 20px;
     background-color: #333;
     color: white;
     z-index: 1000; /* Diğer içeriklerin üzerine çıkması için */
+    box-sizing: border-box; /* Padding'in genişliğe dahil edilmesini sağlar */
 }
 
 .logo {
