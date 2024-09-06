@@ -6,8 +6,8 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 8px;
-  margin: 8px 15px; /* Üst ve alt margin bırak */
-  min-width: 90vw; /* Sayfanın genişliğini tam olarak kullan */
+  margin: 40px 15px; 
+  min-width: 90vw; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hafif gölge */
   background-color: #fff; /* Arka plan rengi */
   box-sizing: border-box;
