@@ -1,18 +1,19 @@
-// pages/index.tsx
-import { GetServerSideProps } from 'next';
-import { fetchAllCoins } from '../services/index';
-import { Coin } from '../types/type';
-import CryptoCard from '../components/CryptoCard';
-import Watchlist from '../components/Watchlist';
-import { useCryptoContext } from '../context/context';
-import styles from '../styles/CryptoCard.module.css';
+'use client'; 
+import React from 'react';
+import { useQuery } from 'react-query';
+import { fetchAllCoins } from './services';
+import CryptoCard from './components/CryptoCard';
+import Watchlist from './components/Watchlist';
+import { Coin } from './types/type';
+import { useCryptoContext } from './context/context';
+import styles from './styles/CryptoCard.module.css';
 
-interface HomeProps {
-  coins: Coin[];
-}
-
-const Home: React.FC<HomeProps> = ({ coins }) => {
+const Home: React.FC = () => {
+  const { data: coins, error, isLoading } = useQuery<Coin[]>('coins', fetchAllCoins);
   const { watchlist, addToWatchlist, removeFromWatchlist } = useCryptoContext();
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error occurred!</p>;
 
   return (
     <div className={styles.container}>
@@ -21,22 +22,12 @@ const Home: React.FC<HomeProps> = ({ coins }) => {
         removeFromWatchlist={removeFromWatchlist} // Prop olarak geçirin
       />
       <div className={styles.cryptoList}>
-        {coins.map(coin => (
+        {coins?.map(coin => (
           <CryptoCard key={coin.id} coin={coin} onAddToWatchlist={addToWatchlist} />
         ))}
       </div>      
     </div>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    const coins = await fetchAllCoins();
-    return { props: { coins } };
-  } catch (error) {
-    console.error('Error fetching coins:', error);
-    return { props: { coins: [] } };
-  }
 };
 
 export default Home;
