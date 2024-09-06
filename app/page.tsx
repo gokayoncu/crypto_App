@@ -1,13 +1,17 @@
 import React from 'react';
-import { GetStaticProps } from 'next';
-import { fetchAllCoins } from './services';
+import { fetchAllCoins } from './services';  // API çağrısı
 import CryptoCard from './components/CryptoCard';
 import Watchlist from './components/Watchlist';
 import { Coin } from './types/type';
 import { useCryptoContext } from './context/context';
 import styles from './styles/CryptoCard.module.css';
 
-const Home: React.FC<{ coins: Coin[] }> = ({ coins }) => {
+interface PageProps {
+  coins: Coin[];
+}
+
+const Home: React.FC<PageProps> = async () => {
+  const coins = await fetchAllCoins();  // Server-side veri alımı
   const { watchlist, addToWatchlist, removeFromWatchlist } = useCryptoContext();
 
   return (
@@ -25,14 +29,14 @@ const Home: React.FC<{ coins: Coin[] }> = ({ coins }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+// SSR ile veri getirme (yalnızca veri getirme)
+export async function getServerSideProps() {
   try {
     const coins = await fetchAllCoins();
     return {
       props: {
         coins,
       },
-      revalidate: 60, // Sayfa verisini her 60 saniyede bir yeniler
     };
   } catch (error) {
     console.error('Failed to fetch coins:', error);
@@ -40,9 +44,8 @@ export const getStaticProps: GetStaticProps = async () => {
       props: {
         coins: [],
       },
-      revalidate: 60,
     };
   }
-};
+}
 
 export default Home;
