@@ -5,6 +5,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 16px; 
+  margin:40px;
   padding: 16px;
   border-radius: 8px;
 }
